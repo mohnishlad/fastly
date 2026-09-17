@@ -1,0 +1,242 @@
+.page-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 64px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.9);
+  position: sticky;
+  top: 12px;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f8fafc;
+}
+
+.nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: #f8fafc;
+}
+
+main {
+  display: grid;
+  gap: 28px;
+}
+
+.section-card,
+.review-card,
+.about-box {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.9));
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr;
+  gap: 32px;
+  padding: 42px 32px;
+}
+
+.hero-copy,
+.hero-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 1;
+}
+
+.lede {
+  margin-top: 18px;
+  max-width: 650px;
+  font-size: 1.08rem;
+  color: #cbd5e1;
+}
+
+.cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #f97316, #f59e0b);
+  color: #0f172a;
+}
+
+.secondary-button {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #f8fafc;
+  background: rgba(148, 163, 184, 0.05);
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1px);
+}
+
+.hero-panel {
+  border-radius: 18px;
+  padding: 28px;
+  background: linear-gradient(160deg, rgba(249, 115, 22, 0.12), rgba(59, 130, 246, 0.08));
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.panel-label {
+  margin: 0 0 12px;
+  color: #fbbf24;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-panel h2 {
+  margin: 0;
+  font-size: 2.1rem;
+}
+
+.hero-panel p {
+  margin-top: 14px;
+  color: #dbeafe;
+}
+
+.score-pill {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 18px;
+  background: #facc15;
+  color: #111827;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.content-section {
+  padding: 12px 0;
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  padding: 22px 20px;
+}
+
+.score-tag {
+  display: inline-block;
+  background: rgba(251, 191, 36, 0.18);
+  color: #fcd34d;
+  font-weight: 700;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.review-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.45rem;
+}
+
+.review-card p {
+  margin: 0;
+  color: #dbeafe;
+  line-height: 1.65;
+}
+
+.about-section {
+  padding-bottom: 8px;
+}
+
+.about-box {
+  padding: 28px;
+}
+
+.about-box p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 28px 20px;
+  }
+
+  .page-shell {
+    width: min(100% - 20px, 1180px);
+  }
+}

@@ -1,0 +1,6 @@
+fastly_api_token = "replace-with-fastly-api-token"
+service_name     = "mohnishlad-movie-reviews"
+domain_name      = "www.mohnishlad.com"
+apex_domain      = "mohnishlad.com"
+bucket_name      = "mohnishlad-movie-reviews"
+object_region    = "us-east"
