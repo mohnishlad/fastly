@@ -2,6 +2,11 @@ provider "fastly" {
   api_key = var.fastly_api_token
 }
 
+import {
+  to = fastly_service_vcl.site
+  id = "vj867Izaze6ZRVIeUneXih"
+}
+
 resource "fastly_object_storage_access_keys" "site" {
   description = "Access keys for the static movie review site bucket"
   permission  = "read-write-admin"

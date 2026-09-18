@@ -1,6 +1,6 @@
 # Fastly Movie Review Site
 
-This project contains a small React + Vite static site for movie and TV reviews, hosted behind Fastly CDN and backed by Fastly Object Storage.
+This project contains a small React + Vite static site for movie and TV reviews, served through Fastly and backed by an AWS S3 origin bucket.
 
 ## Required GitHub repository secrets
 
@@ -10,11 +10,14 @@ Settings → Secrets and variables → Actions → New repository secret
 
 Required values:
 
-- `FASTLY_API_TOKEN` — the Fastly API token for the Terraform provider
-- `AWS_ACCESS_KEY_ID` — credentials for the AWS S3-compatible object storage bootstrap flow
-- `AWS_SECRET_ACCESS_KEY` — matching secret key for the object storage bootstrap flow
+- `FASTLY_API_TOKEN` — Fastly API token used by the Terraform Fastly provider
+- `AWS_ACCESS_KEY_ID` — IAM access key for the AWS account that manages the S3 bucket
+- `AWS_SECRET_ACCESS_KEY` — matching AWS secret key
+- `AWS_SESSION_TOKEN` — only needed if your AWS credentials are temporary/session-based
 
-The Fastly token is the one you generate from your Fastly account. The AWS values are needed because the Fastly Object Storage guide uses the AWS S3-compatible provider for bucket creation.
+Optional but often useful:
+
+- `AWS_DEFAULT_REGION` — set to the region where the S3 bucket is created, such as `us-east-1`
 
 ## Local development
 
@@ -31,13 +34,13 @@ npm run build
 
 ## Terraform flow
 
-This repo uses the bootstrap pattern required by the Fastly Object Storage guide:
+This repo now uses the S3-first architecture:
 
-1. create the Fastly object storage access key
-2. use that credential set to provision the bucket with the AWS S3-compatible provider
-3. apply the Fastly service + redirect + caching configuration
+1. provision the S3 bucket and static website configuration with Terraform
+2. upload the built site assets to S3
+3. point the Fastly service at the S3 origin and enforce the domain redirect rules
 
-The workflow in `.github/workflows/deploy-fastly.yml` runs this sequence for PR validation and merge-based deployment.
+The AWS bucket lifecycle is isolated in `infra/s3`, while the Fastly CDN configuration remains in `infra/terraform`.
 
 ## Domain and redirect
 
@@ -46,4 +49,4 @@ The workflow in `.github/workflows/deploy-fastly.yml` runs this sequence for PR 
 
 ## Notes
 
-This is intentionally a static, low-cost architecture designed for a presentation/demo setup and for Fastly’s free-tier object-storage path.
+This is a static, low-cost deployment model designed around AWS S3 for hosting and Fastly for CDN + edge rules.

@@ -13,9 +13,6 @@ jobs:
 
     env:
       FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: us-east-1
       TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_domain_name: www.mohnishlad.com
       TF_VAR_apex_domain: mohnishlad.com
@@ -38,10 +35,6 @@ jobs:
       - name: Terraform validate
         working-directory: infra/terraform
         run: terraform validate
-
-      - name: Bootstrap Fastly object storage access key
-        working-directory: infra/terraform
-        run: terraform apply -target=fastly_object_storage_access_keys.site -auto-approve
 
       - name: Terraform plan
         working-directory: infra/terraform
