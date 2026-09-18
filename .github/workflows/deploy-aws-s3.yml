@@ -1,0 +1,86 @@
+name: AWS S3 bucket management
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - 'infra/s3/**'
+      - '.github/workflows/deploy-aws-s3.yml'
+
+jobs:
+  terraform-plan:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
+      TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      TF_VAR_aws_region: us-east-1
+      TF_VAR_bucket_name: mohnishlad-movie-reviews
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+
+      - name: Terraform init
+        working-directory: infra/s3
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        working-directory: infra/s3
+        run: terraform validate
+
+      - name: Terraform plan
+        working-directory: infra/s3
+        run: terraform plan
+
+  terraform-apply:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
+      TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      TF_VAR_aws_region: us-east-1
+      TF_VAR_bucket_name: mohnishlad-movie-reviews
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+
+      - name: Terraform init
+        working-directory: infra/s3
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        working-directory: infra/s3
+        run: terraform validate
+
+      - name: Terraform plan
+        working-directory: infra/s3
+        run: terraform plan -out=tfplan-s3
+
+      - name: Terraform apply
+        working-directory: infra/s3
+        run: terraform apply -auto-approve tfplan-s3

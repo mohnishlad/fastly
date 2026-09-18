@@ -1,15 +1,12 @@
-name: Fastly feature branch validation
+name: Fastly main deployment
 
 on:
   push:
-    branches-ignore:
-      - main
-  pull_request:
     branches:
       - main
 
 jobs:
-  terraform-plan:
+  terraform-plan-apply:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,4 +36,8 @@ jobs:
 
       - name: Terraform plan
         working-directory: infra/terraform
-        run: terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform apply
+        working-directory: infra/terraform
+        run: terraform apply -auto-approve tfplan
