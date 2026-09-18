@@ -7,7 +7,7 @@ variable "fastly_api_token" {
 variable "service_name" {
   description = "Name of the Fastly service."
   type        = string
-  default     = "mohnishlad-movie-reviews"
+  default     = "Mohnish Lad interview's website"
 }
 
 variable "domain_name" {

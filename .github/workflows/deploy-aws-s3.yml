@@ -2,14 +2,7 @@ name: AWS S3 bucket management
 
 on:
   push:
-    branches:
-      - main
-      - 'feature/**'
-    paths:
-      - 'infra/s3/**'
-      - '.github/workflows/deploy-aws-s3.yml'
-  pull_request:
-    branches:
+    branches-ignore:
       - main
     paths:
       - 'infra/s3/**'
