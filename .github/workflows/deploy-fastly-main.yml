@@ -10,7 +10,7 @@ on:
       - '.github/workflows/deploy-fastly-main.yml'
 
 jobs:
-  terraform-plan-apply:
+  terraform-plan:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -41,8 +41,35 @@ jobs:
 
       - name: Terraform plan
         working-directory: infra/terraform
-        run: terraform plan -out=tfplan
+        run: terraform plan
+
+  terraform-apply:
+    needs: terraform-plan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    environment: production
+
+    env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+      FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN }}
+      TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
+      TF_VAR_domain_name: www.mohnishlad.com
+      TF_VAR_apex_domain: mohnishlad.com
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+
+      - name: Terraform init
+        working-directory: infra/terraform
+        run: terraform init
 
       - name: Terraform apply
         working-directory: infra/terraform
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve
