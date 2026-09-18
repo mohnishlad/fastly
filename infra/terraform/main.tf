@@ -10,10 +10,6 @@ import {
 resource "fastly_service_vcl" "site" {
   name = var.service_name
 
-  domain {
-    name = var.domain_name
-  }
-
   backend {
     name    = "s3_origin"
     address = var.origin_hostname
@@ -134,4 +130,14 @@ resource "fastly_service_vcl" "site" {
       }
     EOT
   }
+}
+
+resource "fastly_domain" "www" {
+  fqdn      = var.domain_name
+  service_id = fastly_service_vcl.site.id
+}
+
+resource "fastly_domain" "apex" {
+  fqdn      = var.apex_domain
+  service_id = fastly_service_vcl.site.id
 }
