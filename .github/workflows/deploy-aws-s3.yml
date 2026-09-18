@@ -80,7 +80,3 @@ jobs:
       - name: Terraform plan
         working-directory: infra/s3
         run: terraform plan -out=tfplan-s3
-
-      - name: Terraform apply
-        working-directory: infra/s3
-        run: terraform apply -auto-approve tfplan-s3
