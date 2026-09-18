@@ -81,8 +81,20 @@ resource "fastly_service_vcl" "site" {
     priority = 100
     content  = <<-EOT
       if (req.http.host == "${var.apex_domain}") {
-        set req.http.Location = "https://${var.domain_name}" + req.url;
-        return (synth(301, "Moved Permanently"));
+        error 801;
+      }
+    EOT
+  }
+
+  snippet {
+    name     = "redirect_apex_to_www_handler"
+    type     = "error"
+    priority = 100
+    content  = <<-EOT
+      if (obj.status == 801) {
+        set obj.status = 301;
+        set obj.http.Location = "https://${var.domain_name}" + req.url;
+        return (deliver);
       }
     EOT
   }
