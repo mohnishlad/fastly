@@ -81,7 +81,8 @@ resource "fastly_service_vcl" "site" {
     priority = 100
     content  = <<-EOT
       if (req.http.host == "${var.apex_domain}") {
-        return (redirect("https://${var.domain_name}" + req.url, 301));
+        set req.http.Location = "https://${var.domain_name}" + req.url;
+        return (synth(301, "Moved Permanently"));
       }
     EOT
   }
