@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'infra/terraform/**'
+      - '.github/workflows/deploy-fastly.yml'
+      - '.github/workflows/deploy-fastly-main.yml'
 
 jobs:
   terraform-plan-apply:
@@ -12,6 +16,7 @@ jobs:
       contents: read
 
     env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
       FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_domain_name: www.mohnishlad.com

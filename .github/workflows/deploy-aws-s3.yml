@@ -1,4 +1,4 @@
-name: AWS S3 bucket management
+name: AWS S3 feature branch validation
 
 on:
   push:
@@ -7,10 +7,25 @@ on:
     paths:
       - 'infra/s3/**'
       - '.github/workflows/deploy-aws-s3.yml'
+      - '.github/workflows/deploy-aws-s3-main.yml'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'infra/s3/**'
+      - '.github/workflows/deploy-aws-s3.yml'
+      - '.github/workflows/deploy-aws-s3-main.yml'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
 
 jobs:
   terraform-plan:
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -27,6 +42,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -44,39 +71,3 @@ jobs:
       - name: Terraform plan
         working-directory: infra/s3
         run: terraform plan
-
-  terraform-apply:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: us-east-1
-      TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      TF_VAR_aws_region: us-east-1
-      TF_VAR_bucket_name: mohnishlad-movie-reviews
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.8.5
-
-      - name: Terraform init
-        working-directory: infra/s3
-        run: terraform init -backend=false
-
-      - name: Terraform validate
-        working-directory: infra/s3
-        run: terraform validate
-
-      - name: Terraform plan
-        working-directory: infra/s3
-        run: terraform plan -out=tfplan-s3
