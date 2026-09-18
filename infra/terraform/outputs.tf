@@ -13,24 +13,7 @@ output "domain" {
   value       = var.domain_name
 }
 
-output "bucket_name" {
-  description = "Name of the Fastly object storage bucket for the site."
-  value       = var.bucket_name
-}
-
-output "object_region" {
-  description = "Region used for the Fastly object storage bucket."
-  value       = var.object_region
-}
-
-output "object_storage_access_key_id" {
-  description = "Fastly object storage access key used to upload site content."
-  value       = fastly_object_storage_access_keys.site.id
-  sensitive   = true
-}
-
-output "object_storage_secret_key" {
-  description = "Fastly object storage secret key used to upload site content."
-  value       = fastly_object_storage_access_keys.site.secret_key
-  sensitive   = true
+output "origin_hostname" {
+  description = "Hostname used as the S3 origin for the site."
+  value       = var.origin_hostname
 }

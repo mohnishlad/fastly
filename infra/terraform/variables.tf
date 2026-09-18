@@ -22,14 +22,8 @@ variable "apex_domain" {
   default     = "mohnishlad.com"
 }
 
-variable "bucket_name" {
-  description = "Name of the Fastly object storage bucket used for the static site."
+variable "origin_hostname" {
+  description = "S3 website endpoint used as the Fastly origin. Example: my-bucket.s3-website-us-east-1.amazonaws.com"
   type        = string
-  default     = "mohnishlad-movie-reviews"
-}
-
-variable "object_region" {
-  description = "Fastly object storage region to use for the site bucket."
-  type        = string
-  default     = "us-east"
+  default     = "mohnishlad-movie-reviews.s3-website-us-east-1.amazonaws.com"
 }

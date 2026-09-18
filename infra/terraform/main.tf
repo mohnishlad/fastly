@@ -7,20 +7,6 @@ import {
   id = "vj867Izaze6ZRVIeUneXih"
 }
 
-resource "fastly_object_storage_access_keys" "site" {
-  description = "Access keys for the static movie review site bucket"
-  permission  = "read-write-admin"
-}
-
-module "fos" {
-  source = "./fos"
-
-  bucket_name    = var.bucket_name
-  access_key_id  = fastly_object_storage_access_keys.site.id
-  secret_key     = fastly_object_storage_access_keys.site.secret_key
-  object_region  = var.object_region
-}
-
 resource "fastly_service_vcl" "site" {
   name = var.service_name
 
@@ -29,13 +15,13 @@ resource "fastly_service_vcl" "site" {
   }
 
   backend {
-    name    = "object_storage"
-    address = module.fos.object_storage_hostname
+    name    = "s3_origin"
+    address = var.origin_hostname
     port    = 443
 
-    override_host     = module.fos.object_storage_hostname
-    ssl_cert_hostname = module.fos.object_storage_hostname
-    ssl_sni_hostname  = module.fos.object_storage_hostname
+    override_host     = var.origin_hostname
+    ssl_cert_hostname = var.origin_hostname
+    ssl_sni_hostname  = var.origin_hostname
     use_ssl           = true
     max_conn          = 200
   }

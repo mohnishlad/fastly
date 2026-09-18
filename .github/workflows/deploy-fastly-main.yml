@@ -16,8 +16,6 @@ jobs:
       TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_domain_name: www.mohnishlad.com
       TF_VAR_apex_domain: mohnishlad.com
-      TF_VAR_bucket_name: mohnishlad-movie-reviews
-      TF_VAR_object_region: us-east
 
     steps:
       - name: Checkout
