@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'infra/terraform/**'
+      - '.github/workflows/deploy-fastly.yml'
+      - '.github/workflows/deploy-fastly-main.yml'
 
 jobs:
   terraform-plan-apply:
