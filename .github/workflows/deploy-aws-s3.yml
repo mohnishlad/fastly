@@ -1,17 +1,6 @@
 name: AWS S3 feature branch validation
 
 on:
-  push:
-    branches-ignore:
-      - main
-    paths:
-      - 'infra/s3/**'
-      - '.github/workflows/deploy-aws-s3.yml'
-      - '.github/workflows/deploy-aws-s3-main.yml'
-      - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'vite.config.*'
   pull_request:
     branches:
       - main

@@ -1,13 +1,6 @@
 name: Fastly feature branch validation
 
 on:
-  push:
-    branches-ignore:
-      - main
-    paths:
-      - 'infra/fastly/**'
-      - '.github/workflows/deploy-fastly.yml'
-      - '.github/workflows/deploy-fastly-main.yml'
   pull_request:
     branches:
       - main
