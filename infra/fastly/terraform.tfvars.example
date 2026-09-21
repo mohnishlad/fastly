@@ -1,5 +1,5 @@
 fastly_api_token = "replace-with-fastly-api-token"
 service_name     = "mohnishlad-movie-reviews"
-domain_name      = "www.mohnishlad.com"
-apex_domain      = "mohnishlad.com"
+domain_name      = "www.mohnish.co"
+apex_domain      = "mohnish.co"
 origin_hostname  = "mohnishlad-movie-reviews.s3-website-us-east-1.amazonaws.com"
