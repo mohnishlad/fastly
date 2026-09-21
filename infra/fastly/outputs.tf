@@ -19,7 +19,7 @@ output "origin_hostname" {
 }
 
 output "tls_challenge_name" {
-  description = "TXT record host name Fastly requires for ACME DNS validation."
+  description = "TXT record for Fastly requires for ACME DNS validation."
   value       = try([for challenge in fastly_tls_subscription.www.managed_dns_challenges : challenge.record_name][0], null)
 }
 
