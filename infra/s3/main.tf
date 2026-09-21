@@ -6,7 +6,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "site" {
   bucket        = var.bucket_name
-  force_destroy = true
+  force_destroy = false
 }
 
 resource "aws_s3_bucket_website_configuration" "site" {

@@ -12,6 +12,7 @@ jobs:
       contents: read
 
     env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-east-1
@@ -43,7 +44,7 @@ jobs:
 
       - name: Terraform init
         working-directory: infra/s3
-        run: terraform init -backend=false
+        run: terraform init
 
       - name: Terraform validate
         working-directory: infra/s3
@@ -51,7 +52,7 @@ jobs:
 
       - name: Terraform plan
         working-directory: infra/s3
-        run: terraform plan -out=tfplan-s3
+        run: terraform plan
 
   terraform-apply:
     needs: terraform-plan
@@ -62,6 +63,7 @@ jobs:
       contents: read
 
     env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-east-1
@@ -93,7 +95,7 @@ jobs:
 
       - name: Terraform init
         working-directory: infra/s3
-        run: terraform init -backend=false
+        run: terraform init
 
       - name: Terraform validate
         working-directory: infra/s3
@@ -101,11 +103,11 @@ jobs:
 
       - name: Terraform plan
         working-directory: infra/s3
-        run: terraform plan -out=tfplan-s3
+        run: terraform plan
 
       - name: Terraform apply
         working-directory: infra/s3
-        run: terraform apply -auto-approve tfplan-s3
+        run: terraform apply -auto-approve
 
       - name: Upload built site to S3
         env:
