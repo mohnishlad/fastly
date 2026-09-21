@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" role="img" aria-label="The Last of Us poster">
+  <defs>
+    <linearGradient id="bg8" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="40%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#bg8)"/>
+  <rect x="96" y="96" width="608" height="1008" rx="36" fill="rgba(15,23,42,0.24)" stroke="rgba(255,255,255,0.15)"/>
+  <text x="400" y="530" text-anchor="middle" font-size="82" font-weight="700" fill="#ecfdf5" font-family="Arial, Helvetica, sans-serif">THE LAST</text>
+  <text x="400" y="640" text-anchor="middle" font-size="76" font-weight="700" fill="#bbf7d0" font-family="Arial, Helvetica, sans-serif">OF US</text>
+  <text x="400" y="760" text-anchor="middle" font-size="30" fill="#dcfce7" letter-spacing="9" font-family="Arial, Helvetica, sans-serif">SURVIVAL / HUMANITY</text>
+</svg>

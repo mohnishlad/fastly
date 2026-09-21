@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" role="img" aria-label="The Batman poster">
+  <defs>
+    <linearGradient id="bg2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#bg2)"/>
+  <rect x="90" y="90" width="620" height="1020" rx="30" fill="rgba(15,23,42,0.42)" stroke="rgba(255,255,255,0.15)"/>
+  <path d="M200 880 L400 370 L600 880 Z" fill="rgba(148,163,184,0.18)"/>
+  <text x="400" y="530" text-anchor="middle" font-size="82" font-weight="800" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif">THE</text>
+  <text x="400" y="650" text-anchor="middle" font-size="96" font-weight="800" fill="#e2e8f0" font-family="Arial, Helvetica, sans-serif">BATMAN</text>
+  <text x="400" y="770" text-anchor="middle" font-size="28" fill="#93c5fd" letter-spacing="10" font-family="Arial, Helvetica, sans-serif">NOCTURNE</text>
+</svg>

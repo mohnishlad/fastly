@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" role="img" aria-label="Dune Part Two poster">
+  <defs>
+    <linearGradient id="bg1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="35%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#bg1)"/>
+  <circle cx="600" cy="260" r="180" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="190" cy="840" r="220" fill="rgba(251,191,36,0.10)"/>
+  <rect x="110" y="110" width="580" height="980" rx="36" fill="rgba(15,23,42,0.28)" stroke="rgba(255,255,255,0.2)"/>
+  <text x="400" y="510" text-anchor="middle" font-size="96" font-weight="700" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif">DUNE</text>
+  <text x="400" y="610" text-anchor="middle" font-size="52" font-weight="600" fill="#fbbf24" font-family="Arial, Helvetica, sans-serif">PART TWO</text>
+  <text x="400" y="760" text-anchor="middle" font-size="32" fill="#e2e8f0" letter-spacing="8" font-family="Arial, Helvetica, sans-serif">EPIC SCI-FI</text>
+</svg>

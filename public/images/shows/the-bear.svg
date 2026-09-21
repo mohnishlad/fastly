@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" role="img" aria-label="The Bear poster">
+  <defs>
+    <linearGradient id="bg6" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="50%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#bg6)"/>
+  <rect x="90" y="90" width="620" height="1020" rx="32" fill="rgba(17,24,39,0.25)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="400" y="560" text-anchor="middle" font-size="96" font-weight="700" fill="#fef2f2" font-family="Arial, Helvetica, sans-serif">THE</text>
+  <text x="400" y="670" text-anchor="middle" font-size="96" font-weight="700" fill="#fdba74" font-family="Arial, Helvetica, sans-serif">BEAR</text>
+  <text x="400" y="770" text-anchor="middle" font-size="32" fill="#fee2e2" letter-spacing="9" font-family="Arial, Helvetica, sans-serif">PRESSURE / HEART</text>
+</svg>
