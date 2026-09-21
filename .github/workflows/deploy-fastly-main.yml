@@ -73,3 +73,9 @@ jobs:
       - name: Terraform apply
         working-directory: infra/fastly
         run: terraform apply -auto-approve
+
+      - name: Show Fastly TLS DNS challenge
+        working-directory: infra/fastly
+        run: |
+          echo "TLS challenge name: $(terraform output -raw tls_challenge_name)"
+          echo "TLS challenge value: $(terraform output -raw tls_challenge_value)"

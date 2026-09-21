@@ -150,3 +150,10 @@ resource "fastly_domain" "apex" {
   fqdn      = var.apex_domain
   service_id = fastly_service_vcl.site.id
 }
+
+resource "fastly_tls_subscription" "www" {
+  certificate_authority = "certainly"
+  domains               = [var.domain_name]
+
+  depends_on = [fastly_domain.www]
+}
