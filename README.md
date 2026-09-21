@@ -44,8 +44,8 @@ The AWS bucket lifecycle is isolated in `infra/s3`, while the Fastly CDN configu
 
 ## Domain and redirect
 
-- primary hostname: `www.mohnishlad.com`
-- apex redirect: `mohnishlad.com` → `https://www.mohnishlad.com`
+- primary hostname: `www.mohnish.co`
+- apex redirect: `mohnish.co` → `https://www.mohnish.co`
 
 ## Notes
 

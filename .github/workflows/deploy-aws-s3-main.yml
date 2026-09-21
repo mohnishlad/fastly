@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'infra/s3/**'
+      - '.github/workflows/deploy-aws-s3.yml'
+      - '.github/workflows/deploy-aws-s3-main.yml'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
 
 jobs:
   terraform-plan:
