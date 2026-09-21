@@ -19,8 +19,8 @@ jobs:
       TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
       FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
-      TF_VAR_domain_name: www.mohnishlad.com
-      TF_VAR_apex_domain: mohnishlad.com
+      TF_VAR_domain_name: www.mohnish.co
+      TF_VAR_apex_domain: mohnish.co
 
     steps:
       - name: Checkout

@@ -13,13 +13,13 @@ variable "service_name" {
 variable "domain_name" {
   description = "Primary hostname served by Fastly, usually www.example.com."
   type        = string
-  default     = "www.mohnishlad.com"
+  default     = "www.mohnish.co"
 }
 
 variable "apex_domain" {
   description = "Apex domain to redirect to the www hostname."
   type        = string
-  default     = "mohnishlad.com"
+  default     = "mohnish.co"
 }
 
 variable "origin_hostname" {
