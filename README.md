@@ -40,7 +40,7 @@ This repo now uses the S3-first architecture:
 2. upload the built site assets to S3
 3. point the Fastly service at the S3 origin and enforce the domain redirect rules
 
-The AWS bucket lifecycle is isolated in `infra/s3`, while the Fastly CDN configuration remains in `infra/terraform`.
+The AWS bucket lifecycle is isolated in `infra/s3`, while the Fastly CDN configuration remains in `infra/fastly`.
 
 ## Domain and redirect
 

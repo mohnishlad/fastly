@@ -1,18 +1,11 @@
 name: Fastly feature branch validation
 
 on:
-  push:
-    branches-ignore:
-      - main
-    paths:
-      - 'infra/terraform/**'
-      - '.github/workflows/deploy-fastly.yml'
-      - '.github/workflows/deploy-fastly-main.yml'
   pull_request:
     branches:
       - main
     paths:
-      - 'infra/terraform/**'
+      - 'infra/fastly/**'
       - '.github/workflows/deploy-fastly.yml'
       - '.github/workflows/deploy-fastly-main.yml'
 
@@ -39,13 +32,13 @@ jobs:
           terraform_version: 1.8.5
 
       - name: Terraform init
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform init
 
       - name: Terraform validate
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform validate
 
       - name: Terraform plan
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform plan

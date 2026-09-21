@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'infra/terraform/**'
+      - 'infra/fastly/**'
       - '.github/workflows/deploy-fastly.yml'
       - '.github/workflows/deploy-fastly-main.yml'
 
@@ -32,15 +32,15 @@ jobs:
           terraform_version: 1.8.5
 
       - name: Terraform init
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform init
 
       - name: Terraform validate
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform validate
 
       - name: Terraform plan
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform plan
 
   terraform-apply:
@@ -67,9 +67,9 @@ jobs:
           terraform_version: 1.8.5
 
       - name: Terraform init
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform init
 
       - name: Terraform apply
-        working-directory: infra/terraform
+        working-directory: infra/fastly
         run: terraform apply -auto-approve
