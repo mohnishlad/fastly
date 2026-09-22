@@ -27,3 +27,16 @@ variable "origin_hostname" {
   type        = string
   default     = "mohnishlad-movie-reviews.s3-website-us-east-1.amazonaws.com"
 }
+
+variable "newrelic_insert_key" {
+  description = "New Relic Logs Ingest/License API key used by Fastly to stream log data."
+  type        = string
+  sensitive   = true
+}
+
+variable "newrelic_region" {
+  description = "New Relic region for log ingestion. Valid values are US and EU."
+  type        = string
+  default     = "US"
+}
+
