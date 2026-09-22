@@ -42,6 +42,27 @@ This repo now uses the S3-first architecture:
 
 The AWS bucket lifecycle is isolated in `infra/s3`, while the Fastly CDN configuration remains in `infra/fastly`.
 
+## Architecture
+
+```text
+                    deploy
+  GitHub Actions ──────────► Terraform ─────► AWS S3 static-site bucket
+                                 │                       ▲
+                                 │ configures            │ origin fetch
+                                 ▼                       │
+Visitor ── HTTPS ─────────► Fastly CDN ──────────────────┘
+                                 │
+                                 │ request logs (JSON)
+                                 ▼
+                          New Relic Logs
+                                 │
+                                 ▼
+                       Fastly quickstart dashboard
+```
+
+Fastly handles TLS, domain redirects, caching, and edge rules. It fetches uncached
+assets from S3 and streams structured request logs to New Relic for the dashboard.
+
 ## Domain and redirect
 
 - primary hostname: `www.mohnish.co`
