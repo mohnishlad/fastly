@@ -107,7 +107,7 @@ resource "fastly_domain" "apex" {
 
 resource "fastly_tls_subscription" "www" {
   certificate_authority = "certainly"
-  domains               = [var.domain_name]
+  domains               = [var.domain_name, var.apex_domain]
 
-  depends_on = [fastly_domain.www]
+  depends_on = [fastly_domain.www, fastly_domain.apex]
 }
