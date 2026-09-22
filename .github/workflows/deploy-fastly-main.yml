@@ -21,6 +21,7 @@ jobs:
       TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_domain_name: www.mohnish.co
       TF_VAR_apex_domain: mohnish.co
+      TF_VAR_newrelic_insert_key: ${{ secrets.NEWRELIC_INSERT_KEY }}
 
     steps:
       - name: Checkout
@@ -56,6 +57,8 @@ jobs:
       TF_VAR_fastly_api_token: ${{ secrets.FASTLY_API_TOKEN }}
       TF_VAR_domain_name: www.mohnish.co
       TF_VAR_apex_domain: mohnish.co
+      TF_VAR_newrelic_insert_key: ${{ secrets.NEWRELIC_INSERT_KEY }}
+
 
     steps:
       - name: Checkout

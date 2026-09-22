@@ -3,3 +3,5 @@ service_name     = "mohnishlad-movie-reviews"
 domain_name      = "www.mohnish.co"
 apex_domain      = "mohnish.co"
 origin_hostname  = "mohnishlad-movie-reviews.s3-website-us-east-1.amazonaws.com"
+newrelic_region  = "US"
+
