@@ -1,4 +1,4 @@
-# main Fastly Terraform configuration file
+# main Fastly Terraform configuration
 provider "fastly" {
   api_key = var.fastly_api_token
 }
