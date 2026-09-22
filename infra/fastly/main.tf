@@ -9,13 +9,11 @@ resource "fastly_service_vcl" "site" {
   backend {
     name    = "s3_origin"
     address = var.origin_hostname
-    port    = 443
+    port    = 80
 
-    override_host     = var.origin_hostname
-    ssl_cert_hostname = var.origin_hostname
-    ssl_sni_hostname  = var.origin_hostname
-    use_ssl           = true
-    max_conn          = 200
+    override_host = var.origin_hostname
+    use_ssl       = false
+    max_conn      = 200
   }
 
   gzip {
