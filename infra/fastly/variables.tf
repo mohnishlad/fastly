@@ -29,14 +29,12 @@ variable "origin_hostname" {
 }
 
 variable "newrelic_insert_key" {
-  description = "New Relic Logs Ingest/License API key used by Fastly to stream log data."
   description = "New Relic Logs Ingest/License API key"
   type        = string
   sensitive   = true
 }
 
 variable "newrelic_region" {
-  description = "New Relic region for log ingestion. Valid values are US and EU."
   description = "New Relic region for log ingestion (US or EU)"
   type        = string
   default     = "US"
