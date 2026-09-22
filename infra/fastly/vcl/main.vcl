@@ -1,7 +1,6 @@
 include "redirects";
 include "static_cache";
 
-#FASTLY recv
 sub vcl_recv {
   call custom_redirects;
   call custom_static_cache;
@@ -17,7 +16,6 @@ sub vcl_recv {
   return (hash);
 }
 
-#FASTLY error
 sub vcl_error {
   if (obj.status == 801) {
     set obj.status = 301;
@@ -26,12 +24,10 @@ sub vcl_error {
   }
 }
 
-#FASTLY fetch
 sub vcl_backend_response {
   call custom_backend_cache_tuning;
 }
 
-#FASTLY deliver
 sub vcl_deliver {
   call custom_cache_headers;
 
