@@ -13,7 +13,7 @@ sub vcl_recv {
     return (pass);
   }
 
-  return (hash);
+  return (lookup);
 }
 
 sub vcl_error {
