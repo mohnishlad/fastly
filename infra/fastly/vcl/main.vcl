@@ -24,7 +24,7 @@ sub vcl_error {
   }
 }
 
-sub vcl_backend_response {
+sub vcl_fetch {
   call custom_backend_cache_tuning;
 }
 
